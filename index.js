@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const port = process.env.PORT || 3000;
+const routes = require("./routes/index.js");
 
 const handlebars = require("express-handlebars");
 app.set("view engine", "hbs");
@@ -12,7 +13,8 @@ app.engine("hbs", handlebars({
 
 app.use(express.static("public"))
 
-app.get("/", (req, res) => res.render("main", {layout : 'index'}));
+app.use("/", routes);
+app.use(require("./routes/index.js"));
 
 
 app.listen(port, () => console.log(`App listening on port ${port}`))
