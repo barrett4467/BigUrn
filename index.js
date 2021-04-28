@@ -10,6 +10,8 @@ app.engine("hbs", handlebars({
     extname: "hbs"
 }));
 
+const urn = require("./routes/urn");
+app.use("/urns", urn);
 
 app.use(express.static("public"))
 
